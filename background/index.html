@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html, body {
+	  margin: 0;
+	  padding: 0;
+	  
+	  overflow: hidden;
+      }
+
+      .canvas {
+	  width: 100vw;
+	  height: 100vh;
+	  
+	  overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas">
+      <canvas></canvas>
+    </div>
+    <script>
+      const container = document.querySelector(".canvas");
+      const canvas = document.querySelector(".canvas > canvas");
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const gl = canvas.getContext("webgl2");
+
+      const animate = () => {
+	  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+	  gl.clear(gl.COLOR_BUFFER_BIT);
+	  
+	  window.requestAnimationFrame(animate);
+      };
+      
+      window.requestAnimationFrame(animate);
+      
+      window.addEventListener("resize", () => {
+	  canvas.width = window.innerWidth;
+	  canvas.height = window.innerHeight;
+      });
+    </script>
+  </body>
+</html>
